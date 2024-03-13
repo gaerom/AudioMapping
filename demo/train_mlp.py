@@ -113,14 +113,6 @@ audio_features_train = encode_audio_data(audio_data_train) # embedding
 audio_features_val = encode_audio_data(audio_data_val) # embedding
 
 
-# print(f'audio embedding shape 확인: {audio_features_train.shape}')
-# encode_audio_data() 함수의 return 값이 embedding을 stack -> 그래서 [데이터수, 1, 1024]가 되어버렸음
-# stack으로 쌓았지만 각각에 대해 처리할 수 있게 해야 함
-
-text_features = torch.stack([text_encoder.encode([label]).to(device).float() for label in labels_train])
-# print(f'text enbedding shape 확인: {text_features.shape}') # 마찬가지로 stack을 해서 차원이 하나 더 늘어남
-
-
 
 # Classification 결과 확인하려면 audio, text embedding 차원이 맞아야 함.
 # demo에서처럼 encoder를 동일한걸 사용해야 함.
